@@ -1,0 +1,112 @@
+/*
+ * Two accents carry data, never decoration:
+ *   --ram  expert weights served from the in-memory cache
+ *   --disk expert weights read from the SSD
+ */
+:root {
+  --paper: #e7ebe4;
+  --paper-raised: #f2f4f0;
+  --ink: #18201c;
+  --muted: #5b6760;
+  --rule: #c6cfc5;
+  --ram: #0e7c74;
+  --disk: #c98a00;
+  --danger: #a3341f;
+
+  --sans: 'Instrument Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --serif: 'Newsreader Variable', Georgia, serif;
+
+  --step--1: 0.8125rem;
+  --step-0: 0.9375rem;
+  --step-1: 1.125rem;
+  --step-2: 1.5rem;
+  --step-3: 2.25rem;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #131916;
+    --paper-raised: #1b221e;
+    --ink: #dbe3dc;
+    --muted: #8e9a93;
+    --rule: #2c3631;
+    --ram: #3bb3a6;
+    --disk: #e0a82e;
+    --danger: #ef7b62;
+    color-scheme: dark;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 var(--step-0) / 1.5 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ram);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/*
+ * Streaming caret at the end of the text being written. Global because the
+ * reply's children come from v-html, which scoped styles cannot reach.
+ */
+.prose.streaming:empty::after,
+.prose.streaming > :last-child::after {
+  content: '';
+  display: inline-block;
+  width: 0.5em;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: -0.15em;
+  background: var(--ram);
+  animation: caret-blink 1.1s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mia-chat",
+      "runtimeExecutable": "/Volumes/nuevo/desarrollo/motorIa/build/mia-web",
+      "runtimeArgs": ["-model", "/Volumes/nuevo/models/qwen3-30b-a3b-q8.mia", "-ram", "6G"],
+      "port": 8080
+    }
+  ]
+}
